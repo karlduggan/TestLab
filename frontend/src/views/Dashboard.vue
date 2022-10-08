@@ -1,11 +1,19 @@
 <template>
     <div class="base-container">
-        <div class="left-container">
+        <div class="header-container">
+
         </div>
-        <div class="right-container">
+        <div class="main-container">
+            
+            <div class="left-container">
+            </div>
+            <div class="right-container">
             <div class="graph-container"></div>
             <div class="mid-container"></div>
         </div>
+
+        </div>
+       
     </div>
 </template>
 <script>
@@ -18,7 +26,18 @@
         width: 100%;
         height: 100%;
         position: absolute;
-        display: inline-flex;
+        
+    }
+    .header-container{
+        width: 100%;
+        height: 50px;
+        border-bottom: 1px solid rgb(190, 190, 190);
+    }
+    .main-container{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        
     }
     .left-container{
         display: block;
