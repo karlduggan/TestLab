@@ -5,9 +5,11 @@
             <canvas id="myChart" height="200"></canvas>
 
         </div>
+        <button @click="runTest">Test Update</button>
     </div>
 </template>
 <script>
+    let myChart = null;
     import Chart from 'chart.js/auto';
     export default {
         name: "DevPage",
@@ -15,7 +17,7 @@
             console.log("Component mounted")
             const ctx = document.getElementById('myChart')
 
-            const myChart = new Chart(ctx, {
+            myChart = new Chart(ctx, {
     type: 'bar',
     data: {
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -43,7 +45,21 @@
     }
 });
 myChart;
+        },
+        methods: {
+            addData: function(label, data) {
+                myChart.data.labels.push(label);
+                myChart.data.datasets.forEach((dataset) => {
+                dataset.data.push(data);
+        });
+         myChart.update();
+        },
+        runTest: function(){
+            console.log("testing button click")
+            this.addData("blue2", 9)
         }
+        },
+        
     }
  
 </script>
