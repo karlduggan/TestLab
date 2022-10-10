@@ -8,6 +8,7 @@
                 <div class="left">
                     
                     <h3>{{idx.url}}</h3>
+                    <button>Select</button>
                     <button @click="removeEnvionmentFromList(index)">Remove</button>
                 </div>
                 
@@ -30,7 +31,7 @@
             return {
                urlInput: "",
                urlList: [
-                {"url": "www.google.com", "index": 0}
+                {"url": "www.google.com", "index": 0, "buglist": []}
                ]
               
             }

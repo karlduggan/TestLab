@@ -1,8 +1,11 @@
 <template>
     
         <div class="main-container">
-            
+            <ModalComponent :open="this.$store.state.showModal" @close="this.$store.state.showModal = !this.$store.state.showModal">
+                <AddBugComponent></AddBugComponent>
+            </ModalComponent>
             <div class="left-container">
+                <button @click="this.$store.state.showModal = true">Add Bug</button>
                 <BugLogComponent></BugLogComponent>
             </div>
             <div class="right-container">
@@ -25,10 +28,13 @@ import BarGraphComponent from '@/components/BarGraphComponent.vue';
 import OptionsComponent from '@/components/OptionsComponent.vue';
 import EnvironmentComponent from '@/components/EnvironmentComponent.vue';
 import AddLocationComponent from '@/components/AddLocationComponent.vue';
+import ModalComponent from '@/components/ModalComponent.vue';
+import AddBugComponent from '@/components/AddBugComponent.vue';
+
 
     export default {
     name: "DashboardPage",
-    components: { BugLogComponent, BarGraphComponent, OptionsComponent, EnvironmentComponent, AddLocationComponent }
+    components: { BugLogComponent, BarGraphComponent, OptionsComponent, EnvironmentComponent, AddLocationComponent, ModalComponent, AddBugComponent }
 }
 </script>
 <style scoped>
@@ -41,6 +47,7 @@ import AddLocationComponent from '@/components/AddLocationComponent.vue';
     .left-container{
         display: block;
         width: 50%;
+        margin: 10px;
     }
     .right-container{
         display: inline-block;
