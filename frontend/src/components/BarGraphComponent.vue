@@ -6,18 +6,37 @@
 
 <script>
     import Chart from 'chart.js/auto';
+    import store from '@/store/index.js';
     export default {
         name: "BarGraphComponent",
-
+        props: ['data'],
+        
+        data(){
+            return {
+                myChart: null,
+                
+            }
+        },
+        computed:{
+            getData(){
+                return store.state.graphData
+            },
+            getLables(){
+                return store.state.graphLables
+            },
+        },
+       
         mounted() {
             const ctx = document.getElementById('myChart')
-            const myChart = new Chart(ctx, {
+            this.myChart = new Chart(ctx, {
             type: 'bar',
+            
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: this.getLables,
                 datasets: [{
                     label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
+                    //data: [12, 19, 3, 5, 2, 3],
+                    data: this.getData,
                     backgroundColor: [
                         'rgba(255, 99, 132,1 )',
                         'rgba(54, 162, 235,1 )',
@@ -37,8 +56,16 @@
                 }
             }
         });
-        myChart;
-                }
+        
+
+                },
+            unmounted(){
+                this.myChart.destroy()
+            },
+            
+                
+            
+        
             }
     
 </script>

@@ -11,6 +11,7 @@
             </div>
             <div class="mid-container">
                 <OptionsComponent></OptionsComponent>
+                <AddLocationComponent></AddLocationComponent>
                 <EnvironmentComponent></EnvironmentComponent>
             </div>
         </div>
@@ -23,10 +24,11 @@ import BugLogComponent from '@/components/BugLogComponent.vue';
 import BarGraphComponent from '@/components/BarGraphComponent.vue';
 import OptionsComponent from '@/components/OptionsComponent.vue';
 import EnvironmentComponent from '@/components/EnvironmentComponent.vue';
+import AddLocationComponent from '@/components/AddLocationComponent.vue';
 
     export default {
     name: "DashboardPage",
-    components: { BugLogComponent, BarGraphComponent, OptionsComponent, EnvironmentComponent }
+    components: { BugLogComponent, BarGraphComponent, OptionsComponent, EnvironmentComponent, AddLocationComponent }
 }
 </script>
 <style scoped>
