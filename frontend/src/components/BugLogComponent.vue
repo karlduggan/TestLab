@@ -69,6 +69,7 @@ export default {
         padding: 20px;
         border: 1px solid rgb(230, 228, 228);
         box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+        margin-bottom: 10px;
     }
     /* Dropdown transition */
     .fade-enter-from {

@@ -5,7 +5,10 @@
                 <AddBugComponent></AddBugComponent>
             </ModalComponent>
             <div class="left-container">
-                <button @click="this.$store.state.showModal = true">Add Bug</button>
+                <div class="header-left-wrapper">
+                    <button class="add-bug-btn" @click="this.$store.state.showModal = true">Add Bug</button>
+                </div>
+            
                 <BugLogComponent></BugLogComponent>
             </div>
             <div class="right-container">
@@ -64,5 +67,16 @@ import AddBugComponent from '@/components/AddBugComponent.vue';
         height: 50%;
         width: 100%;
         margin: 5px;
+    }
+    .add-bug-btn{
+        width: 150px;
+        padding: 10px;
+        cursor: pointer;
+        background: none;
+        border-radius: 5px;
+        border: 1px solid grey;
+    }
+    .header-left-wrapper{
+        margin-bottom: 10px;
     }
 </style>

@@ -13,7 +13,7 @@
         <input v-model="expected_input" type="text" name="" id="">
         <h4>Actual Results:</h4>
         <input v-model="actual_input" type="text" name="" id="">
-        <button @click="addBug" >Add</button>
+        <button @click="addBug">Add</button>
     </div>
 </template>
 <script>
