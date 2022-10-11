@@ -4,13 +4,15 @@
     <div class="bug-log-container">
         <div v-for="(bug, index) in this.$store.state.selectedBugList " :key="bug">
             <div class="bug-container">
-                <div @click="showDrop = !showDrop" class="bug-header">
+                <!--div @click="showDrop = !showDrop" class="bug-header" -->
+                <div @click="isDisplayed(bug)" class="bug-header" >
                     <h3>{{bug.title}}</h3>
                     <p>{{bug.description}}</p>
+                    
                 </div>
                 <!-- Dropdown Container BEGINS -->
                 <transition name="fade">
-                    <div v-if="showDrop" >
+                    <div v-if="bug.show" >
                         <h4>Steps to Reproduce</h4>
                         <div v-for="step in bug.steps" :key="step">
                             <p>{{step}}</p>
@@ -48,6 +50,10 @@ export default {
         deleteBug: function(index){
             console.log(index)
             this.$store.state.selectedBugList.splice(index, 1);
+        },
+        isDisplayed: function(bug){
+            // Set bug show to the opposite value to display or close dropdown
+            bug.show = !bug.show;
         }
     }
 

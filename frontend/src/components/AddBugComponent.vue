@@ -26,7 +26,8 @@
                 step_line: "",
                 steps: [],
                 expected_input: "",
-                actual_input: ""
+                actual_input: "",
+                show: false
             }
         },
         methods: {
@@ -36,12 +37,16 @@
                 this.step_line = ""
             },
             addBug: function(){
+                // Using the array length of list to create a new id
+                let get_current_id = this.$store.state.selectedBugList.length
                 let bug_payload = {
-                "title": this.title_input, 
-                "description": this.description_input,
-                "steps": this.steps,
-                "expected": this.expected_input,
-                "actual": this.actual_input}
+                    "id": get_current_id,
+                    "title": this.title_input, 
+                    "description": this.description_input,
+                    "steps": this.steps,
+                    "expected": this.expected_input,
+                    "actual": this.actual_input
+                }
 
                 this.$store.state.selectedBugList.push(bug_payload);
             },

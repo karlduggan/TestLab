@@ -8,6 +8,7 @@ const store = createStore({
         graphLables: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'Pink', 'grey'],
         // Example given below
         selectedBugList: [{
+            "id": 0,
             "title": "Test Title", 
             "description": "This is a short disciption about this bug",
             "steps": [
@@ -16,7 +17,8 @@ const store = createStore({
                     "step 3: navigate to some place",
                     "step 4: observe something that is displayed"],
             "expected": "This is what is expected to happen",
-            "actual": "This is what actually happens "}]
+            "actual": "This is what actually happens ",
+            "show": false}]
 
     },
     mutations: { 
