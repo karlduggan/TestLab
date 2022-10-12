@@ -6,7 +6,7 @@
     </div>
 </template>
 <script>
-   
+
     export default {
         name: "AddLocationComponent",
         data(){
@@ -20,6 +20,8 @@
             
             addLocation: function(){
                 
+                
+               
                 
                 this.$store.state.graphLables.push(this.location)
                 this.$store.state.graphData = [0]

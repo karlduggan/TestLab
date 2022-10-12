@@ -13,7 +13,7 @@
             </div>
             <div class="right-container">
             <div class="graph-container">
-                <BarGraphComponent></BarGraphComponent>
+                <BarGraphComponent data="[9,4,6,3]"></BarGraphComponent>
             </div>
             <div class="mid-container">
                 <OptionsComponent></OptionsComponent>

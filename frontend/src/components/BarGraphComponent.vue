@@ -7,6 +7,7 @@
 <script>
     import Chart from 'chart.js/auto';
     import store from '@/store/index.js';
+   
     export default {
         name: "BarGraphComponent",
         props: ['data'],
@@ -14,7 +15,7 @@
         data(){
             return {
                 myChart: null,
-                
+                props_data: this.data
             }
         },
         computed:{
@@ -25,8 +26,16 @@
                 return store.state.graphLables
             },
         },
+        methods:{
+            testBust: function(){
+                console.log("event bus  works !")
+
+            }
+        },
        
         mounted() {
+            
+
             const ctx = document.getElementById('myChart')
             this.myChart = new Chart(ctx, {
             type: 'bar',
@@ -36,7 +45,8 @@
                 datasets: [{
                     label: '# of Votes',
                     //data: [12, 19, 3, 5, 2, 3],
-                    data: this.getData,
+                    //data: this.getData,
+                    data: this.props_data,
                     backgroundColor: [
                         'rgba(255, 99, 132,1 )',
                         'rgba(54, 162, 235,1 )',
