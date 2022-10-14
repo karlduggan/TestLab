@@ -6,7 +6,7 @@
         <input v-model="description_input" type="text" name="" class="input-line">
         <h4>Steps to Reproduce</h4>
         <div v-for="(step, index) in this.steps " :key="step">
-            {{index + 1}}: {{step}}
+            <div @click="edit(index)">{{index + 1}}: {{step}}</div>
         </div>
         <input v-model="step_line" type="text" @keyup.enter="addStep" class="input-line">
         <h4>Expected Results:</h4>
@@ -59,6 +59,10 @@
                 this.expected_input = ""
                 this.actual_input = ""
             },
+            edit:function(index){
+                console.log(index)
+                this.steps[index] = "test"
+            }
             
         }
     }

@@ -15,7 +15,7 @@
                     <div v-if="bug.show" >
                         <h4>Steps to Reproduce</h4>
                         <div v-for="step in bug.steps" :key="step">
-                            <p>{{step}}</p>
+                            <div><p>{{step}}</p></div>
                         </div>
                         <h4>Expected Results</h4>
                         <p>{{bug.expected}}</p>
@@ -54,7 +54,8 @@ export default {
         isDisplayed: function(bug){
             // Set bug show to the opposite value to display or close dropdown
             bug.show = !bug.show;
-        }
+        },
+        
     }
 
 }
