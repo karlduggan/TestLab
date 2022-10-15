@@ -6,6 +6,8 @@ const store = createStore({
         showModal: false,
         graphData :[0],
         graphLables: ["Landing Page"],
+       
+
         // Example given below
         selectedBugList: [{
             "id": 0,

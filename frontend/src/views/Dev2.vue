@@ -14,7 +14,7 @@
         <div class="graph-container">
             <div class="chart-wrapper">
                 <canvas id="myChart"></canvas>
-                
+                <button @click="loadInDataToChart">Test</button>
             </div>
         </div>
         <div class="mid-container">
@@ -59,7 +59,7 @@ export default {
     data: {
         labels: ["Landing Page"],
         datasets: [{
-            label: '# of Votes',
+            label: 'Number of Bugs',
             data: [0],
             backgroundColor: [
                 'rgba(255, 99, 132,1 )',
@@ -76,7 +76,10 @@ export default {
         responsive: true,
         scales: {
             y: {
-                beginAtZero: true
+                beginAtZero: true,  
+            ticks: {
+                stepSize: 1,
+            }
             }
         }
     }
@@ -89,23 +92,20 @@ myChart;
                 console.log("Parent")
                 // Update the location data to the chart
                 console.log(data)
-                this.addToChart(data.location, 0)
+                this.addNewLabelToChart(data.location)
                 // Increment location index
-                this.currentLocationIndex += this.graphData.length - 1
+                this.currentLocationIndex += this.graphData.length
                 
             },
-            addToChart:function(label, d){
-                console.log("work")
-                this.$store.state.graphLables.push("test")
-                this.$store.state.graphData.push(100)
-                
-                myChart.data.labels.push(label);
-                myChart.data.datasets.forEach((dataset) => {
-                dataset.data.push(d);
-                console.log(d)
-                });
+            // Add new label to the chart and set vaue to zero
+            addNewLabelToChart:function(newLabel){
+                console.log("-> New Label added to chart")
+                //this.$store.state.graphLables.push(newLabel)
+                //this.$store.state.graphData.push(0)
+                myChart.data['labels'].push(newLabel);
+                // Set new label data to 0
+                myChart.data['datasets'][0]['data'].push(0)
                 myChart.update()
-               
             },
             // Increment when adding bug
             incrementBugCount: function(){
@@ -116,7 +116,15 @@ myChart;
                 console.log(myChart.data.datasets[0].data)
             },
             loadInDataToChart:function(){
+                let labels = this.graphLables;
+                let data = this.graphData;
+                for(let i = 0; i <= labels.length; i++){
+                    this.addNewLabelToChart(labels[i])
+                    // Increment location index
+                    this.currentLocationIndex += this.graphData.length
+                    myChart.data.datasets[0].data[this.currentLocationIndex] = data[i]
 
+                }
             }
         }
     }
