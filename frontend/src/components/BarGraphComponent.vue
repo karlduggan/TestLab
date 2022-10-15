@@ -1,6 +1,7 @@
 <template>
     <div class="chart-wrapper">
             <canvas id="myChart" height="400"></canvas>
+            <button @click="updateChart">Test</button>
         </div>
 </template>
 
@@ -27,9 +28,11 @@
             },
         },
         methods:{
-            testBust: function(){
-                console.log("event bus  works !")
-
+            
+            updateChart:function(){
+                console.log("testing updte")
+                
+                //this.myChart.update()
             }
         },
        
@@ -46,7 +49,7 @@
                     label: '# of Votes',
                     //data: [12, 19, 3, 5, 2, 3],
                     //data: this.getData,
-                    data: this.props_data,
+                    data: this.getData,
                     backgroundColor: [
                         'rgba(255, 99, 132,1 )',
                         'rgba(54, 162, 235,1 )',

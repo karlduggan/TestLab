@@ -47,6 +47,8 @@
                     "expected": this.expected_input,
                     "actual": this.actual_input
                 }
+                // Emit value to update chart
+                this.$emit("bugAdded")
 
                 this.$store.state.selectedBugList.push(bug_payload);
                 // Close modal

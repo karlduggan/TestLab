@@ -19,17 +19,16 @@
         methods:{
             
             addLocation: function(){
+                // Don't add unless input is valid
+                if(this.location != "" && this.location.length >= 4){
+                    this.$emit("getLocationEmit", {
+                    "location": this.location, 
+                    "value": 0})
+                    this.$store.state.graphLables.push(this.location)
+                    this.$store.state.graphData.push[0]
+                    this.location = ""
+                }
                 
-                
-               
-                
-                this.$store.state.graphLables.push(this.location)
-                this.$store.state.graphData = [0]
-                
-                //this.$store.dispatch('addLable', this.location)
-                //this.$store.dispatch('addData', 3)
-                console.log(this.$store.state.graphData)
-                //this.location = ""
                
             }
         }
