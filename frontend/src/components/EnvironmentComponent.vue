@@ -1,8 +1,11 @@
 <template>
     <div class="environment-wrapper">
-        <input placeholder="Environment" id="env-input" type="text" v-model="urlInput">
-        <button id="add-env-btn" @click="addToEnvironmentList">Add</button>
-        <div v-for="(idx, index) in urlList " :key="idx">
+        <div class="input-btn-wrapper">
+            <input placeholder="Environment" id="env-input" type="text" v-model="urlInput">
+            <button id="add-env-btn" @click="addToEnvironmentList">Add</button>
+        </div>
+        
+        <div class="env-log" v-for="(idx, index) in urlList " :key="idx">
             <div class="row">
                 <div class="left">
                     
@@ -84,5 +87,21 @@
 
     box-sizing: border-box;
 }
-
+#env-input:focus {
+    outline: none;
+}
+#add-env-btn{
+    padding: 9.5px;
+    width: 100px;
+}
+.input-btn-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.env-log{
+    overflow-y: auto;
+    height: 100%;
+    }
 </style>

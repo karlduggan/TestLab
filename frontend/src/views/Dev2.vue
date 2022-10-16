@@ -6,7 +6,7 @@
         <div class="left-container">
             <div class="header-left-wrapper">
                 <button class="add-bug-btn" @click="this.$store.state.showModal = true">Add Bug</button>
-                <vSelect label="countryName" :options="locationList"></vSelect>
+                <vSelect label="countryName" :options="locationList" style="width: 300px"></vSelect>
             </div>
         
             <BugLogComponent></BugLogComponent>
@@ -14,7 +14,7 @@
         <div class="right-container">
         <div class="graph-container">
             <div class="chart-wrapper">
-                <canvas id="myChart"></canvas>
+                <canvas id="myChart" height="340"></canvas>
 
             </div>
         </div>
@@ -83,6 +83,7 @@ export default {
     },
     options: {
         responsive: true,
+        maintainAspectRatio: false,
         scales: {
             y: {
                 beginAtZero: true,  
@@ -200,11 +201,16 @@ myChart;
     cursor: pointer;
     background: none;
     border-radius: 5px;
-    border: 1px solid grey;
+    border: 1px solid rgb(190, 190, 190);
+    color: rgb(138, 138, 138);
+    font-weight: 800;
 }
 .header-left-wrapper{
     margin-bottom: 10px;
-    display: inline-flex;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    
 }
 .chart-wrapper {
         display: inline-block;

@@ -1,7 +1,7 @@
 <template>
     <div class="all-location-wrapper">
         <input placeholder="Location" type="text" v-model="location" />
-        <button @click="addLocation">Add Location</button>
+        <button id="add-location-btn" @click="addLocation">Add Location</button>
     </div>
 </template>
 <script>
@@ -37,7 +37,7 @@
 .all-location-wrapper {
     display: flex;
     flex-direction: row;
-
+    justify-content: space-between;
 }
 input {
     width: 50%;
@@ -46,5 +46,11 @@ input {
     padding: 10px;
     
     box-sizing: border-box;
+}
+input:focus {
+    outline: none;
+}
+#add-location-btn {
+    width: 100px;
 }
 </style>
