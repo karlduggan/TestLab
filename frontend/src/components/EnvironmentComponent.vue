@@ -1,8 +1,7 @@
 <template>
     <div class="environment-wrapper">
-        <h2>Environment</h2>
-        <input type="text" v-model="urlInput" id="">
-        <button @click="addToEnvironmentList">Add</button>
+        <input placeholder="Environment" id="env-input" type="text" v-model="urlInput">
+        <button id="add-env-btn" @click="addToEnvironmentList">Add</button>
         <div v-for="(idx, index) in urlList " :key="idx">
             <div class="row">
                 <div class="left">
@@ -59,9 +58,7 @@
         display: flex;
         flex-direction: row;
         padding: 20px;
-        margin: 10px;
         justify-content: space-between;
-        
         border: 1px solid rgb(230, 228, 228);
         box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
 
@@ -79,5 +76,13 @@
         border: none;
         cursor: pointer;
     }
+    #env-input {
+    width: 50%;
+    background-color: rgb(243, 243, 243);
+    border: 1px solid rgb(190, 190, 190);
+    padding: 10px;
+
+    box-sizing: border-box;
+}
 
 </style>

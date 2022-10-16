@@ -4,13 +4,14 @@ const store = createStore({
         // Store api request results in the task list
         name: "Testing Vue State Management in store/index.js",
         showModal: false,
-        graphData :[0],
+        graphData :[1],
         graphLables: ["Landing Page"],
        
 
         // Example given below
         selectedBugList: [{
             "id": 0,
+            "location": "Landing Page",
             "title": "Test Title", 
             "description": "This is a short disciption about this bug",
             "steps": [
@@ -21,8 +22,9 @@ const store = createStore({
             "expected": "This is what is expected to happen",
             "actual": "This is what actually happens ",
             "show": false}]
-
-    },
+        },
+        // Stores the currently selected location
+        selectedLocation: "",
     mutations: { 
         appendData(state, data){
             // mutate state

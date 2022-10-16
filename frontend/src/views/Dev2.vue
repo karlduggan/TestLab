@@ -6,6 +6,7 @@
         <div class="left-container">
             <div class="header-left-wrapper">
                 <button class="add-bug-btn" @click="this.$store.state.showModal = true">Add Bug</button>
+                <vSelect label="countryName" :options="locationList"></vSelect>
             </div>
         
             <BugLogComponent></BugLogComponent>
@@ -14,13 +15,17 @@
         <div class="graph-container">
             <div class="chart-wrapper">
                 <canvas id="myChart"></canvas>
-                <button @click="loadInDataToChart">Test</button>
+
             </div>
         </div>
         <div class="mid-container">
             <OptionsComponent></OptionsComponent>
-            <AddLocationComponent @getLocationEmit="getLocation"></AddLocationComponent>
-            <EnvironmentComponent></EnvironmentComponent>
+            <div class="loaction-wrapper">
+                <AddLocationComponent @getLocationEmit="getLocation"></AddLocationComponent>
+            </div>
+            <div class="environment-wrapper">
+                <EnvironmentComponent></EnvironmentComponent>
+            </div>
         </div>
     </div>
 
@@ -35,6 +40,9 @@ import AddLocationComponent from '@/components/AddLocationComponent.vue';
 import ModalComponent from '@/components/ModalComponent.vue';
 import AddBugComponent from '@/components/AddBugComponent.vue';
 
+import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css';
+
 
 
 let myChart = null;
@@ -42,25 +50,26 @@ import Chart from 'chart.js/auto';
     
 export default {
     name: "Dev2Page",
-    components: { BugLogComponent, OptionsComponent, EnvironmentComponent, AddLocationComponent, ModalComponent, AddBugComponent },
+    components: { vSelect ,BugLogComponent, OptionsComponent, EnvironmentComponent, AddLocationComponent, ModalComponent, AddBugComponent },
     data(){
         return {
             graphData: this.$store.state.graphData,
             graphLables: this.$store.state.graphLables,
-            currentLocationIndex: 0
+            currentLocationIndex: 0,
+            locationList: ["Landing Page"],
+            bugList: []
         }
     },
     mounted(){
         console.log("Component mounted")
             const ctx = document.getElementById('myChart')
-
             myChart = new Chart(ctx, {
     type: 'bar',
     data: {
         labels: ["Landing Page"],
         datasets: [{
             label: 'Number of Bugs',
-            data: [0],
+            data: [1],
             backgroundColor: [
                 'rgba(255, 99, 132,1 )',
                 'rgba(54, 162, 235,1 )',
@@ -103,6 +112,8 @@ myChart;
                 //this.$store.state.graphLables.push(newLabel)
                 //this.$store.state.graphData.push(0)
                 myChart.data['labels'].push(newLabel);
+                // Update location selector list
+                this.locationList.push(newLabel)
                 // Set new label data to 0
                 myChart.data['datasets'][0]['data'].push(0)
                 myChart.update()
@@ -124,6 +135,28 @@ myChart;
                     this.currentLocationIndex += this.graphData.length
                     myChart.data.datasets[0].data[this.currentLocationIndex] = data[i]
 
+                }
+            },
+            // Save data to local storage
+            saveToLocalStorage: function(){
+                let payload = this.$store.state.selectedBugList
+                // Check if TestLabData is already set
+                if(JSON.parse(window.localStorage.getItem("TestLabData")) != null){
+                    console.log(payload)
+                } else {
+                    // Payload should be a dictionary {"data": []}
+                    window.localStorage.setItem("TestLabData", JSON.stringify(payload));
+                }
+            },
+            // Load data from local storage 
+            loadFromLocalStorage: function(){
+                 let localStorageData = JSON.parse(window.localStorage.getItem("TestLabData"));
+                 // Check if TestLabData is already set
+                 if(localStorageData != null){
+                    this.$store.state.selectedBugList = localStorageData;
+                } else {
+                    // Payload should be a dictionary {"data": []}
+                    window.localStorage.setItem("TestLabData", JSON.stringify({}));
                 }
             }
         }
@@ -171,6 +204,7 @@ myChart;
 }
 .header-left-wrapper{
     margin-bottom: 10px;
+    display: inline-flex;
 }
 .chart-wrapper {
         display: inline-block;
@@ -179,5 +213,11 @@ myChart;
 }
 #myChart {
     max-height: 270px;
+}
+.loaction-wrapper {
+    margin: 10px;
+}
+.environment-wrapper {
+    margin: 5px;
 }
 </style>

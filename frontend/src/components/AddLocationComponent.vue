@@ -1,7 +1,6 @@
 <template>
     <div class="all-location-wrapper">
-        <h2>location</h2>
-        <input type="text" v-model="location" />
+        <input placeholder="Location" type="text" v-model="location" />
         <button @click="addLocation">Add Location</button>
     </div>
 </template>
@@ -35,5 +34,17 @@
     }
 </script>
 <style scoped>
+.all-location-wrapper {
+    display: flex;
+    flex-direction: row;
 
+}
+input {
+    width: 50%;
+    background-color: rgb(243, 243, 243);
+    border: 1px solid rgb(190, 190, 190);
+    padding: 10px;
+    
+    box-sizing: border-box;
+}
 </style>

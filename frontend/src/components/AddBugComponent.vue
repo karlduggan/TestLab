@@ -8,7 +8,7 @@
         <div v-for="(step, index) in this.steps " :key="step">
             <div @click="edit(index)">{{index + 1}}: {{step}}</div>
         </div>
-        <input v-model="step_line" type="text" @keyup.enter="addStep" class="input-line">
+        <input placeholder="Enter For New Line" v-model="step_line" type="text" @keyup.enter="addStep" class="input-line">
         <h4>Expected Results:</h4>
         <textarea v-model="expected_input" type="text" name="" class="text-area" rows="4"></textarea>
         <h4>Actual Results:</h4>
@@ -64,6 +64,7 @@
             edit:function(index){
                 console.log(index)
                 this.steps[index] = "test"
+                
             }
             
         }
@@ -73,7 +74,7 @@
 .input-line {
     width: 100%;
     background-color: rgb(243, 243, 243);
-    border: none;
+    border: 1px solid rgb(190, 190, 190);
     padding: 5px;
     box-sizing: border-box;
 }
@@ -83,7 +84,7 @@
 
 .text-area {
     background-color: rgb(243, 243, 243);
-    border: none;
+    border: 1px solid rgb(190, 190, 190);
     width: 100%;
     padding: 5px;
     resize: none;
