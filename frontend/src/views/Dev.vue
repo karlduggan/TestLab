@@ -1,77 +1,105 @@
+
+  
+
+
+
 <template>
     <div class="dev-container">
-        <h1>Dev Page</h1>
-        <div class="chart-wrapper">
-            <canvas id="myChart" height="200"></canvas>
+        <n-carousel autoplay>
+      <img
+        class="carousel-img"
+        src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel1.jpeg"
+      >
+      <img
+        class="carousel-img"
+        src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg"
+      >
+      <img
+        class="carousel-img"
+        src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg"
+      >
+      <img
+        class="carousel-img"
+        src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg"
+      >
+    </n-carousel>
 
-        </div>
-        <button @click="runTest">Test Update</button>
+    <n-dropdown trigger="hover" :options="options" @select="handleSelect">
+        <n-button>Go For a Trip</n-button>
+    </n-dropdown>
+
+    <n-button @click="showModal = true">
+    Start Me up
+  </n-button>
+  <n-modal
+    v-model:show="showModal"
+    class="custom-card"
+    preset="card"
+    :style="bodyStyle"
+    title="Modal"
+    :bordered="false"
+    size="huge"
+    :segmented="segmented"
+  >
+    <template #header-extra>
+      Oops!
+    </template>
+    Content
+    <template #footer>
+      Footer
+    </template>
+  </n-modal>
+  <n-skeleton text :repeat="2" /> <n-skeleton text style="width: 60%" />
     </div>
 </template>
 <script>
-    let myChart = null;
-    import Chart from 'chart.js/auto';
+ 
+ import { ref } from "vue";
     export default {
         name: "DevPage",
-        mounted() {
-            console.log("Component mounted")
-            const ctx = document.getElementById('myChart')
+        setup () {
 
-            myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132,1 )',
-                'rgba(54, 162, 235,1 )',
-                'rgba(255, 206, 86,1 )',
-                'rgba(75, 192, 192,1 )',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1 )'
-            ],
-         
-        }]
-    },
-    options: {
-        responsive: true,
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
-myChart;
+    return {
+        bodyStyle: {
+        width: "600px"
+      },
+      segmented: {
+        content: "soft",
+        footer: "soft"
+      },
+      showModal: ref(false), 
+
+      options: [
+        {
+          label: 'Marina Bay Sands',
+          key: 'marina bay sands',
+          disabled: true
         },
+        {
+          label: "Brown's Hotel, London",
+          key: "brown's hotel, london"
+        },
+        {
+          label: 'Atlantis Bahamas, Nassau',
+          key: 'atlantis nahamas, nassau'
+        },
+        {
+          label: 'The Beverly Hills Hotel, Los Angeles',
+          key: 'the beverly hills hotel, los angeles'
+        }
+      ],
+    }},
         methods: {
-            addData: function(label, data) {
-                myChart.data.labels.push(label);
-                myChart.data.datasets.forEach((dataset) => {
-                dataset.data.push(data);
-        });
-         myChart.update();
-        },
-        runTest: function(){
-            console.log("testing button click")
-            this.addData("blue2", 9)
-        }
+      
         },
         
     }
  
 </script>
 <style scoped>
-    /* IMPORTANT for resizing width*/
-    .chart-wrapper {
-        display: inline-block;
-        position: relative;
-        width: 50%;   
-    }
-    #myChart {
-        position: relative;
-        
-    }
+  .carousel-img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+  }
 </style>
