@@ -5,6 +5,7 @@ import DevPage from '@/views/Dev.vue';
 import Dev2Page from '@/views/Dev2.vue';
 import HomePage from '@/views/Home.vue'
 import EditPage from '@/views/Edit.vue'
+import CrudPage from '@/views/CrudDemo'
 
 
 const routes = [
@@ -33,6 +34,11 @@ const routes = [
         path: '/edit/:id',
         name: 'Edit',
         component: EditPage
+    },
+    {
+        path: '/crud',
+        name: 'CRUD',
+        component: CrudPage
     }
 ]
 
