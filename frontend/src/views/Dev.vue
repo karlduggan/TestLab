@@ -31,6 +31,13 @@
     <n-button @click="showModal = true">
     Start Me up
   </n-button>
+
+
+
+  <n-button size="large" :theme-overrides="themeOverrides">
+      Not Not Small
+    </n-button>
+
   <n-modal
     v-model:show="showModal"
     class="custom-card"
@@ -53,10 +60,32 @@
     </div>
 </template>
 <script>
- 
+ const themeOverrides = {
+    common: {
+      primaryColor: 'blue'
+    },
+    Button: {
+      textColor: 'blue'
+    },
+    Select: {
+      peers: {
+        InternalSelection: {
+          textColor: 'blue'
+        }
+      }
+    }
+    // ...
+  }
+
  import { ref } from "vue";
     export default {
         name: "DevPage",
+        data(){
+          return {
+            themeOverrides : themeOverrides
+          }
+          
+        },
         setup () {
 
     return {

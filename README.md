@@ -14,3 +14,11 @@ A single page app that helps software tester plan and structure the activity of 
 - QR code generator  
 - Create list
 - Bug write up
+
+
+# How To Get Started with Firebase with Vue
+- npm install --save firebase
+- Go to the Firebase website and create new project 
+- Register app with Add Firebase to web app config
+- Copy Firebase configaration details
+- Enable cloud fire store
