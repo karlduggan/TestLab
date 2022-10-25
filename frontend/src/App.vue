@@ -1,10 +1,13 @@
 
 <template>
    <div id="app" fluid>
- 
-      <router-view>
-        
-      </router-view>
+    
+      <nav>
+        <n-space id="navbar" justify="space-between">
+        <button>Login</button>
+        </n-space>
+      </nav>
+      <router-view/>
     
 
   </div>
@@ -31,9 +34,12 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  color: #2c3e50;
+  color: hsl(210, 29%, 24%);
  
 }
+#navbar {
+padding: 10px;
 
+}
 
 </style>
