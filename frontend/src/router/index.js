@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
 // Import the home page for router
 import DashboardPage from '@/views/Dashboard.vue';
 import DevPage from '@/views/Dev.vue';
@@ -17,7 +18,10 @@ const routes = [
     {
         path: '/dashboard', 
         name: 'Dashboard', 
-        component: DashboardPage
+        component: DashboardPage,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/dev',
@@ -46,6 +50,33 @@ const router = createRouter( {
     history: createWebHistory(),
     routes
     
+})
+
+const getCurrentUser = () => {
+ return new Promise((resolve, reject) => {
+    const removeListener = onAuthStateChanged(
+        getAuth(),
+        // Callback
+        (user) => {
+            removeListener();
+            resolve(user);
+        },
+        reject
+    )
+ })
+}
+
+// Navigation guard
+router.beforeEach(async (to, from, next)=> {
+    if(to.matched.some((record) => record.meta.requiresAuth)){
+        if(await getCurrentUser()) {
+            next();
+        } else {
+            alert("You don't have access!");
+            next("/");
+        }
+    }
+    next();
 })
 
 export default router

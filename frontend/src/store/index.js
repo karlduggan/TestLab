@@ -2,10 +2,10 @@ import { createStore } from "vuex";
 const store = createStore({
     state: {
         // Login
-    
+        user : null,
 
         // Store api request results in the task list
-        name: "Testing Vue State Management in store/index.js",
+
         showModal: false,
         graphData :[1],
         graphLables: ["Landing Page"],
@@ -35,6 +35,10 @@ const store = createStore({
         },
         appendLable(state, lable){
             state.graphLables.push(lable)
+        },
+
+        setAuthUser(state, user){
+            state.user = user;
         }
       
     },
@@ -47,7 +51,9 @@ const store = createStore({
         }
     },
     getters: {
-      
+        isLoggedIn(state) {
+            return state.user != null;  
+        }
     },
     modules: {
         
